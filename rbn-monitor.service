@@ -1,0 +1,15 @@
+[Unit]
+Description=RBN skimmer watchdog (Telegram alerts)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Replace YOURUSER with your Linux username (see README)
+User=YOURUSER
+WorkingDirectory=/home/YOURUSER/rbn-monitor
+ExecStart=/usr/bin/python3 -u /home/YOURUSER/rbn-monitor/rbn_monitor.py --config /home/YOURUSER/rbn-monitor/config.ini
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
